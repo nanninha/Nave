@@ -7,13 +7,13 @@ var tiros;
 var inimigos;
 var tiros_matriz=[];
 var inimigos_matriz=[];
-
+var score;
 
 function preload() {
   naveImage = loadImage("naveverde.png");
   inimigoImage = loadImage("inimigo.png");
   tiroImage = loadImage("tiro.png");
-  inimigoAnimacao = loadAnimation("inimigo.png", "inimigo2.png")
+  inimigoAnimacao = loadAnimation("i2.png","inimigo.png")
 }
 
 function setup() {
@@ -25,6 +25,7 @@ function setup() {
   parede2 = createSprite(1, 200, 1, 400)
   parede1.visible = false
   parede2.visible = false
+  
   inimigos = new Group();
   tiros = new Group();
   limite = createEdgeSprites;
@@ -38,6 +39,7 @@ function draw() {
 
   background("black");
 
+ 
   drawSprites();
 
   if (keyIsDown(RIGHT_ARROW)) {
@@ -62,7 +64,7 @@ for (var i = 0; i < tiros_matriz.length; i++) {
 	for (var j = 0; j < inimigos_matriz.length; j++) {
 
 			if (tiros_matriz[i].isTouching(inimigos_matriz[j])) {
-
+      
         inimigos_matriz[j].destroy();
         tiros_matriz[i].destroy();
         break;
@@ -97,8 +99,8 @@ function atirar() {
 function criarinimigos(y) {
   for (c = 1; c < 7; c++) {
     var inimigo = createSprite(60 * c, y, 40, 30);
-    //inimigo.addAnimation("inimigos",inimigoAnimacao);
-    inimigo.addImage(inimigoImage);
+    inimigo.addAnimation("inimigos",inimigoAnimacao);
+    //inimigo.addImage(inimigoImage);
     inimigo.scale = 0.15;
     inimigo.debug=true;
     inimigos_matriz.push(inimigo);
